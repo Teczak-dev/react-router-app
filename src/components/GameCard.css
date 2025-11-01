@@ -1,0 +1,4 @@
+li:hover{
+    filter: grayscale(1);
+    transform: scale(0.9);
+}
