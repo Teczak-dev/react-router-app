@@ -16,6 +16,9 @@ import AdminLayout from './components/AdminLayout'
 import LoginForm from './pages/LoginForm';
 import Games from './pages/Games';
 import GameDetails from './pages/GameDetails';
+import { ThemeProvider } from './context/ThemeContext'
+import { UserProvider } from './context/userContext'
+
 
 const router = createBrowserRouter([
 
@@ -83,6 +86,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-	<RouterProvider router={router} />
+	<ThemeProvider>
+	    <UserProvider>
+		<RouterProvider router={router} />
+	    </UserProvider>
+	</ThemeProvider>
     </StrictMode>,
 )
