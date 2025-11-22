@@ -3,7 +3,7 @@ import GameCard from '../components/GameCard';
 import { useTheme } from '../context/ThemeContext';
 import { favoritesHook } from '../context/FavoriteContex';
 
-export default function Games(){
+export default function Favorites(){
     const {theme} = useTheme();
     const [gamesDB, setGamesDB] = useState([]);
     const {isFavorite, toggleFavorite} = favoritesHook();
@@ -28,12 +28,13 @@ export default function Games(){
 	    minHeight: '100vh',
 	    padding: '20px'
 	}}>
-	    <h1>Lista gier Free2Play</h1>
+	    <h1>Lista gier ulubionych Free2Play</h1>
 	    <h2>Gry</h2>
 	    <ul style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row' , gap: '20px', listStyleType: 'none'}}>
-		{gamesDB.map(game => (
-		    <GameCard key={game.id} game={game} toggleFavorite={toggleFavorite} isFavorite={isFavorite(game)} />    		
-		))}
+		{gamesDB.filter((game) => isFavorite(game))
+		    .map(game => (
+		    <GameCard key={game.id} game={game} toggleFavorite={toggleFavorite} isFavorite={isFavorite(game)} /> 
+		))		}
 	    </ul>
 	</div>
    );

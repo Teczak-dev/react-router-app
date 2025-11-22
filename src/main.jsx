@@ -18,6 +18,8 @@ import Games from './pages/Games';
 import GameDetails from './pages/GameDetails';
 import { ThemeProvider } from './context/ThemeContext'
 import { UserProvider } from './context/userContext'
+import { FavoriteProvider } from './context/FavoriteContex'
+import Favorites from './pages/Favorites'
 
 
 const router = createBrowserRouter([
@@ -59,6 +61,10 @@ const router = createBrowserRouter([
 	    {
 		path: '/games/:gameId',
 		element: <GameDetails/>
+	    },
+	    {
+		path: '/ulu',
+		element: <Favorites/>
 	    }
 	],
     },
@@ -88,7 +94,9 @@ createRoot(document.getElementById('root')).render(
     <StrictMode>
 	<ThemeProvider>
 	    <UserProvider>
-		<RouterProvider router={router} />
+		<FavoriteProvider>
+		    <RouterProvider router={router} />
+		</FavoriteProvider>
 	    </UserProvider>
 	</ThemeProvider>
     </StrictMode>,

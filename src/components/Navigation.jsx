@@ -22,7 +22,9 @@ export default function Navigation() {
 	    
 	    <NavLink to='/games' className={ ({isActive}) => 
 		isActive ? 'active' : '' }>Gry Free2Play</NavLink>
-	    
+	    <NavLink to='/ulu' className={ ({isActive}) => 
+		isActive ? 'active' : '' }>ULU</NavLink>
+
 	    <NavLink to="/blog" className={ ({isActive}) => 
 		isActive ? 'active' : '' }>Blog</NavLink>
 	    
