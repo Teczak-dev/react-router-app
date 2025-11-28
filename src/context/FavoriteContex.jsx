@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { favoriteReducer } from "../reducers/favoriteReducer";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -6,7 +6,11 @@ const FavoriteContext = createContext();
 
 export function FavoriteProvider({children}){
     const [storedFavorites, setStoredFavorites] = useLocalStorage("favorites", []);
-    const [favorites, dispatch] = useReducer(favoriteReducer, []);
+    const [favorites, dispatch] = useReducer(favoriteReducer, storedFavorites);
+    
+    useEffect(()=>{
+	setStoredFavorites(favorites);
+    }, [favorites]);
 
     const isFavorite = (game) => {
 	return favorites.some((favorites) => favorites.id === game.id);
