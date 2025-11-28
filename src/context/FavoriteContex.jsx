@@ -1,9 +1,11 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import { favoriteReducer } from "../reducers/favoriteReducer";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const FavoriteContext = createContext();
 
 export function FavoriteProvider({children}){
+    const [storedFavorites, setStoredFavorites] = useLocalStorage("favorites", []);
     const [favorites, dispatch] = useReducer(favoriteReducer, []);
 
     const isFavorite = (game) => {
@@ -17,6 +19,7 @@ export function FavoriteProvider({children}){
 	else{
 	    dispatch({type: 'ADD_TO_FAVORITE', paylod: game});
 	}
+	
 	console.log(favorites);
     }
 
